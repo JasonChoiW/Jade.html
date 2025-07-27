@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JADE 지반기술사사무소 - 최기병 기술사</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3d72 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20v20h20z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .company-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .engineer-name {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .credentials {
+            font-size: 1.2rem;
+            color: #3498db;
+            font-weight: 600;
+            background: rgba(52, 152, 219, 0.2);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(52, 152, 219, 0.3);
+        }
+
+        nav {
+            background: #34495e;
+            padding: 1.2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 2.5rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        main {
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .services {
+            margin-bottom: 5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .service-card li {
+            padding: 0.8rem 0;
+            position: relative;
+            padding-left: 2rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .service-card li:last-child {
+            border-bottom: none;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .inspection-types {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 5rem;
+        }
+
+        .inspection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .inspection-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .inspection-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .inspection-item h4 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .inspection-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .expertise {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 5rem;
+        }
+
+        .expertise h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .expertise-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .expertise-item h4 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .contact h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-item h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: #1a252f;
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .engineer-name {
+                font-size: 1.5rem;
+            }
+            
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="company-name">JADE</div>
+                <div class="company-subtitle">지반기술사사무소</div>
+                <div class="engineer-name">최기병 기술사</div>
+                <div class="credentials">지반 전문 기술사 (Professional Engineer)</div>
+            </div>
+        </header>
+
+        <nav>
+            <a href="#services">검사 서비스</a>
+            <a href="#inspection-types">검사 유형</a>
+            <a href="#expertise">전문 분야</a>
+            <a href="#contact">문의</a>
+        </nav>
+
+        <main>
+            <section class="hero">
+                <h2>전문 지반 안전 검사 서비스</h2>
+                <p>정부 인증 지반 기술사가 제공하는 신뢰할 수 있는 지반 안전성 평가 및 검사 서비스입니다. 
+                공공기관과 민간 건설업체의 안전한 건축 승인을 위한 전문적인 엔지니어링 솔루션을 제공합니다.</p>
+            </section>
+
+            <section id="services" class="services">
+                <h2 class="section-title">주요 검사 서비스</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>지반 안전성 평가</h3>
+                        <ul>
+                            <li>지반 지지력 분석 및 평가</li>
+                            <li>기초 안정성 검토</li>
+                            <li>지반 침하량 예측</li>
+                            <li>사면 안정성 평가</li>
+                            <li>액상화 위험도 분석</li>
+                            <li>지반 개량 방안 제시</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>건축 승인 검사</h3>
+                        <ul>
+                            <li>건축 허가 지반 검사</li>
+                            <li>정부 승인 서류 작성</li>
+                            <li>법규 준수 검증</li>
+                            <li>시공 단계별 모니터링</li>
+                            <li>최종 검사 및 인증</li>
+                            <li>준공 승인 지원</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>토목 공사 지원</h3>
+                        <ul>
+                            <li>인프라 프로젝트 컨설팅</li>
+                            <li>도로 및 교량 기초 분석</li>
+                            <li>지하 시설물 설치 평가</li>
+                            <li>굴착 안전 계획 수립</li>
+                            <li>옹벽 설계 지원</li>
+                            <li>지하수 영향 분석</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="inspection-types" class="inspection-types">
+                <h2 class="section-title">전문 지반 검사 분야</h2>
+                <div class="inspection-grid">
+                    <div class="inspection-item">
+                        <h4>주택 건축 지반 검사</h4>
+                        <p>단독주택, 공동주택 건설을 위한 지반 안전성 평가 및 기초 설계 검토</p>
+                    </div>
+                    <div class="inspection-item">
+                        <h4>상업시설 지반 검사</h4>
+                        <p>상가, 오피스텔, 대형 건물의 지반 지지력 분석 및 안전성 검증</p>
+                    </div>
+                    <div class="inspection-item">
+                        <h4>공공시설 지반 검사</h4>
+                        <p>학교, 병원, 관공서 등 공공시설의 지반 안전성 평가</p>
+                    </div>
+                    <div class="inspection-item">
+                        <h4>도로 및 교량 검사</h4>
+                        <p>교통 인프라 건설을 위한 지반 조사 및 안정성 평가</p>
+                    </div>
+                    <div class="inspection-item">
+                        <h4>산업시설 지반 검사</h4>
+                        <p>공장, 창고, 물류센터 등 산업시설의 지반 검토</p>
+                    </div>
+                    <div class="inspection-item">
+                        <h4>재개발 지역 검사</h4>
+                        <p>도시 재개발 및 재건축 프로젝트의 지반 안전성 검증</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="expertise" class="expertise">
+                <h2>전문 자격 및 경력</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <h4>정부 인증 기술사</h4>
+                        <p>지반 전문 분야 기술사 자격증 보유 및 정부 공인 검사 권한</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h4>풍부한 실무 경험</h4>
+                        <p>30년 이상의 지반 엔지니어링 및 안전성 평가 실무 경험</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h4>공공·민간 신뢰</h4>
+                        <p>정부기관 및 건설업체로부터 신뢰받는 검사 전문가</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h4>법규 전문성</h4>
+                        <p>건축법, 건설기준 및 안전 규정에 대한 깊은 이해</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h4>정확한 분석</h4>
+                        <p>최신 지반 조사 기법 및 분석 소프트웨어 활용</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h4>신속한 서비스</h4>
+                        <p>프로젝트 일정에 맞춘 빠르고 정확한 검사 서비스</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <h2>전문 지반 검사 상담</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>검사 상담 예약</h4>
+                        <p>귀하의 프로젝트에 맞는 지반 안전성 평가를 예약하시고, 
+                        건축 승인에 필요한 인증된 검사 보고서를 받아보세요.</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>빠른 대응 서비스</h4>
+                        <p>긴급한 프로젝트 일정과 정부 제출 기한에 맞춘 
+                        신속한 검사 및 보고서 작성 서비스를 제공합니다.</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>연락처 정보</h4>
+                        <p>📧 이메일: [이메일 주소]<br>
+                        📱 전화: [전화번호]<br>
+                        📍 주소: [사무소 주소]<br>
+                        🏢 JADE 지반기술사사무소</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 JADE 지반기술사사무소 | 최기병 기술사</p>
+                <p>Professional Engineer (PE) - Geotechnical Engineering Inspection Services</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 부드러운 스크롤 네비게이션
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 스크롤 애니메이션 효과
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 카드 애니메이션 초기 설정
+        document.querySelectorAll('.service-card, .inspection-item, .expertise-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // 헤더 스크롤 효과
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.transform = 'translateY(-10px)';
+                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
